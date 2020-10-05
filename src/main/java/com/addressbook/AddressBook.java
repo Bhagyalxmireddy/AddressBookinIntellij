@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-        static final int ADDRESS = 1;
-        static final int CITY = 2;
-        static final int STATE = 3;
-        static final int ZIP = 4;
-        static final int PHONENUMBER = 5;
+        static final int ONE = 1;
+        static final int TWO = 2;
+        static final int THREE = 3;
+        static final int FOUR = 4;
+        static final int FIVE = 5;
         public static List<ContactPerson> persons = new ArrayList<>();
         static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
@@ -93,26 +93,26 @@ public class AddressBook {
             int choice = scan.nextInt();
             switch (choice)
             {
-                case ADDRESS:
+                case ONE:
                     System.out.println("Enter Address: ");
                     address = scan.next();
                     persons.get(id).setAddress(address);
                     break;
-                case CITY:
+                case TWO:
                     System.out.println("Enter City");
                     city = scan.next();
                     persons.get(id).setCity(city);
                     break;
-                case STATE:
+                case THREE:
                     System.out.println("Enter State");
                     state = scan.next();
                     persons.get(id).setState(state);
-                case ZIP:
+                case FOUR:
                     System.out.println("Enter Zip");
                     zip = scan.nextLong();
                     persons.get(id).setZip(zip);
                     break;
-                case PHONENUMBER:
+                case FIVE:
                     System.out.println("Enter Mobile number");
                     phone = scan.nextLong();
                     persons.get(id).setPhoneNumber(phone);
