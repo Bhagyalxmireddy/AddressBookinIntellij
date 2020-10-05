@@ -1,18 +1,41 @@
 package com.addressbook;
 
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    static final ADDRESS = 1, CITY = 2,
-    public static List<ContactPerson> persons = new ArrayList<>();
-    static Scanner scan = new Scanner(System.in);
+        static final int ADDRESS = 1;
+        static final int CITY = 2;
+        static final int STATE = 3;
+        static final int ZIP = 4;
+        static final int PHONENUMBER = 5;
+        public static List<ContactPerson> persons = new ArrayList<>();
+        static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
+        int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("Welcome to AddressBook");
-        contact.addPerson();
-
+        while (choice < 4) {
+            System.out.println("1.Add Person ");
+            System.out.println("2.Print persons details");
+            System.out.println("3.Edit the person details");
+            System.out.println("4.Exit");
+            choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    contact.addPerson();
+                    break;
+                case 2:
+                    contact.printPersonDetails();
+                    break;
+                case 3:
+                    contact.editPersonDetails();
+                    break;
+            }
+        }
     }
     public void addPerson()
     {
@@ -87,12 +110,12 @@ public class AddressBook {
                 case ZIP:
                     System.out.println("Enter Zip");
                     zip = scan.nextLong();
-                    persons.get(id).setzip(zip);
+                    persons.get(id).setZip(zip);
                     break;
                 case PHONENUMBER:
                     System.out.println("Enter Mobile number");
                     phone = scan.nextLong();
-                    persons.get(id).setphoneNumber(phone);
+                    persons.get(id).setPhoneNumber(phone);
                     break;
                 default:
                     System.out.println("Please Enter Valid Option");
@@ -103,4 +126,4 @@ public class AddressBook {
 
 
 }
-}
+
