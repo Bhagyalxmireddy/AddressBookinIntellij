@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    static final int ADDRESS = 1;
-    static final int CITY = 2;
-    static final int STATE = 3;
-    static final int ZIP = 4;
-    static final int PHONENUMBER = 5;
+
+    static final int ONE = 1;
+    static final int TWO = 2;
+    static final int THREE = 3;
+    static final int FOUR = 4;
+    static final int FIVE = 5;
     public static List<ContactPerson> persons = new ArrayList<>();
     public static ArrayList<String> personName = new ArrayList<>();
     public static ArrayList<String> personCities = new ArrayList<>();
@@ -109,27 +110,29 @@ public class AddressBook {
             System.out.println(persons.get(id));
             System.out.println("please select the option to edit...\n \n 1. Address \n 2.city \n 3.state \n 4.zip \n 5.phone number ");
             int choice = scan.nextInt();
-            switch (choice) {
-                case ADDRESS:
+
+            switch (choice)
+            {
+                case ONE:
                     System.out.println("Enter Address: ");
                     address = scan.next();
                     persons.get(id).setAddress(address);
                     break;
-                case CITY:
+                case TWO:
                     System.out.println("Enter City");
                     city = scan.next();
                     persons.get(id).setCity(city);
                     break;
-                case STATE:
+                case THREE:
                     System.out.println("Enter State");
                     state = scan.next();
                     persons.get(id).setState(state);
-                case ZIP:
+                case FOUR:
                     System.out.println("Enter Zip");
                     zip = scan.nextLong();
                     persons.get(id).setZip(zip);
                     break;
-                case PHONENUMBER:
+                case FIVE:
                     System.out.println("Enter Mobile number");
                     phone = scan.nextLong();
                     persons.get(id).setPhoneNumber(phone);
