@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-        static final int ADDRESS = 1;
-        static final int CITY = 2;
-        static final int STATE = 3;
-        static final int ZIP = 4;
-        static final int PHONENUMBER = 5;
-        public static List<ContactPerson> persons = new ArrayList<>();
-        public static ArrayList<String> personName = new ArrayList<>();
-        public static ArrayList<String> personCities = new ArrayList<>();
-        public static ArrayList<String> personStates = new ArrayList<>();
-        static Scanner scan = new Scanner(System.in);
+    static final int ADDRESS = 1;
+    static final int CITY = 2;
+    static final int STATE = 3;
+    static final int ZIP = 4;
+    static final int PHONENUMBER = 5;
+    public static List<ContactPerson> persons = new ArrayList<>();
+    public static ArrayList<String> personName = new ArrayList<>();
+    public static ArrayList<String> personCities = new ArrayList<>();
+    public static ArrayList<String> personStates = new ArrayList<>();
+    static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("Welcome to AddressBook");
-        while (choice < 8) {
+        while (choice < 9) {
             System.out.println("1.Add Person ");
             System.out.println("2.Print persons details");
             System.out.println("3.Edit the person details");
@@ -26,7 +27,8 @@ public class AddressBook {
             System.out.println("5.Sort By FirstName ");
             System.out.println("6.sort by Statename");
             System.out.println("7.view person by city and state");
-            System.out.println("8.Exit");
+            System.out.println("8.Search person by city and state");
+            System.out.println("9.Exit");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -50,9 +52,13 @@ public class AddressBook {
                 case 7:
                     contact.viewByCityState();
                     break;
+                case 8:
+                    contact.searchPerson();
+                    break;
             }
         }
     }
+
     public void addPerson() {
         System.out.println("Enter person details:");
         System.out.println("\n Enter FirstName : ");
@@ -77,33 +83,25 @@ public class AddressBook {
             System.out.println("person details added successfully \n");
         }
     }
-    public void printPersonDetails()
-    {
-        if (persons.isEmpty())
-        {
+
+    public void printPersonDetails() {
+        if (persons.isEmpty()) {
             System.out.println("There are no contact to print ");
-        }
-        else
-        {
-            for (ContactPerson contact : persons)
-            {
+        } else {
+            for (ContactPerson contact : persons) {
                 System.out.println(contact);
             }
         }
     }
-    public void editPersonDetails()
-    {
-        if (persons.isEmpty())
-        {
+
+    public void editPersonDetails() {
+        if (persons.isEmpty()) {
             System.out.println("There are no contacts to edit ");
-        }
-        else
-        {
+        } else {
             String address, city, state;
             long phone, zip;
             int id;
-            for (ContactPerson contact : persons)
-            {
+            for (ContactPerson contact : persons) {
                 System.out.println("ID: #" + persons.indexOf(contact) + " : " + contact);
             }
             System.out.println(" Enter ID of contact to Edit : ");
@@ -111,8 +109,7 @@ public class AddressBook {
             System.out.println(persons.get(id));
             System.out.println("please select the option to edit...\n \n 1. Address \n 2.city \n 3.state \n 4.zip \n 5.phone number ");
             int choice = scan.nextInt();
-            switch (choice)
-            {
+            switch (choice) {
                 case ADDRESS:
                     System.out.println("Enter Address: ");
                     address = scan.next();
@@ -143,59 +140,49 @@ public class AddressBook {
             }
         }
     }
-    public void deletePerson()
-    {
-        if(persons.isEmpty())
-        {
+
+    public void deletePerson() {
+        if (persons.isEmpty()) {
             System.out.println("There are no persons to delete in the addressbook");
-        }
-        else
-        {
+        } else {
             System.out.println("Enter firstname to delete the person");
-            String firstName =scan.next();
-            for(int count = 0; count < persons.size(); count++)
-            {
-                if(persons.get(count).getFirstName().equals(firstName))
-                {
+            String firstName = scan.next();
+            for (int count = 0; count < persons.size(); count++) {
+                if (persons.get(count).getFirstName().equals(firstName)) {
                     persons.remove(persons.get(count));
                 }
             }
         }
     }
-    public boolean checkPersonExistence(String name)
-    {
+
+    public boolean checkPersonExistence(String name) {
         int flag = 0;
-        for(ContactPerson person : persons)
-        {
-            if(person.getFirstName().equals(name))
-            {
+        for (ContactPerson person : persons) {
+            if (person.getFirstName().equals(name)) {
                 flag = 1;
             }
         }
         return flag == 1;
     }
-    public void sortByName()
-    {
+
+    public void sortByName() {
         persons.sort(ContactPerson.firstNamesorting);
         persons.forEach(System.out::println);
     }
-    public void sortByState()
-    {
+
+    public void sortByState() {
         persons.sort(ContactPerson.stateSorting);
         persons.forEach(System.out::println);
     }
-    public void viewByCityState()
-    {
-        for (ContactPerson person : persons)
-        {
+
+    public void viewByCityState() {
+        for (ContactPerson person : persons) {
             personName.add(person.getFirstName());
         }
-        for (ContactPerson person : persons)
-        {
+        for (ContactPerson person : persons) {
             personCities.add(person.getCity());
         }
-        for (ContactPerson person : persons)
-        {
+        for (ContactPerson person : persons) {
             personStates.add(person.getState());
         }
         System.out.println("persons name : \t ");
@@ -207,7 +194,40 @@ public class AddressBook {
         System.out.print("States of a persons: \t ");
         System.out.println(personStates);
 
+
     }
+    public void searchPerson()
+    {
+        int choice;
+        String city,state;
+        System.out.println(""); System.out.println("\n\t 1.Search persons in cities :" +
+            "\n\t 2. Search persons in State : ");
+        choice = scan.nextInt();
+        if (choice == 1)
+        {
+            System.out.printf("Enter Cities : ");
+            city = scan.next();
+            for (int count = 0; count < persons.size(); count++)
+            {
+                if (persons.get(count).getCity().equals(city))
+                {
+                    System.out.println(count + ". " + persons.get(count).toString());
+                }
+            }
+        }
+        else if (choice == 2)
+        {
+            System.out.printf("Enter State : ");
+            state = scan.next();
+            for (int count = 0; count < persons.size(); count++)
+            {
+                if (persons.get(count).getState().equals(state))
+                {
+                    System.out.println(count + ". " + persons.get(count).toString());
+                }
+            }
+        }
 
+
+    }
 }
-
