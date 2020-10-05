@@ -1,7 +1,4 @@
 package com.addressbook;
-
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,11 +15,12 @@ public class AddressBook {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("Welcome to AddressBook");
-        while (choice < 4) {
+        while (choice < 5) {
             System.out.println("1.Add Person ");
             System.out.println("2.Print persons details");
             System.out.println("3.Edit the person details");
-            System.out.println("4.Exit");
+            System.out.println("4.Delete the person ");
+            System.out.println("5.Exit");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -33,6 +31,9 @@ public class AddressBook {
                     break;
                 case 3:
                     contact.editPersonDetails();
+                    break;
+                case 4:
+                    contact.deletePerson();
                     break;
             }
         }
@@ -120,6 +121,25 @@ public class AddressBook {
                 default:
                     System.out.println("Please Enter Valid Option");
                     editPersonDetails();
+            }
+        }
+    }
+    public void deletePerson()
+    {
+        if(persons.isEmpty())
+        {
+            System.out.println("There are no persons to delete in the addressbook");
+        }
+        else
+        {
+            System.out.println("Enter firstname to delete the person");
+            String firstName =scan.next();
+            for(int count = 0; count < persons.size(); count++)
+            {
+                if(persons.get(count).getFirstName().equals(firstName))
+                {
+                    persons.remove(persons.get(count));
+                }
             }
         }
     }
