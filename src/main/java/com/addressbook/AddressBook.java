@@ -49,10 +49,10 @@ public class AddressBook {
         String city = scan.next();
         System.out.println("\n Enter state : ");
         String state = scan.next();
+        System.out.println("\n Enter Phone number: ");
+        long phoneNumber = scan.nextLong();
         System.out.println("\n Enter zip : ");
         long zip = scan.nextLong();
-        System.out.println("\n Enter phone number : ");
-        long phoneNumber = scan.nextLong();
         ContactPerson person1 = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber);
         persons.add(person1);
         System.out.println("person details added successfully \n");
