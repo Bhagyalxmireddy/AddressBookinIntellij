@@ -10,19 +10,23 @@ public class AddressBook {
         static final int ZIP = 4;
         static final int PHONENUMBER = 5;
         public static List<ContactPerson> persons = new ArrayList<>();
+        public static ArrayList<String> personName = new ArrayList<>();
+        public static ArrayList<String> personCities = new ArrayList<>();
+        public static ArrayList<String> personStates = new ArrayList<>();
         static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("Welcome to AddressBook");
-        while (choice < 7) {
+        while (choice < 8) {
             System.out.println("1.Add Person ");
             System.out.println("2.Print persons details");
             System.out.println("3.Edit the person details");
             System.out.println("4.Delete the person ");
             System.out.println("5.Sort By FirstName ");
             System.out.println("6.sort by Statename");
-            System.out.println("7.Exit");
+            System.out.println("7.view person by city and state");
+            System.out.println("8.Exit");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -43,7 +47,9 @@ public class AddressBook {
                 case 6:
                     contact.sortByState();
                     break;
-
+                case 7:
+                    contact.viewByCityState();
+                    break;
             }
         }
     }
@@ -178,5 +184,30 @@ public class AddressBook {
         persons.sort(ContactPerson.stateSorting);
         persons.forEach(System.out::println);
     }
+    public void viewByCityState()
+    {
+        for (ContactPerson person : persons)
+        {
+            personName.add(person.getFirstName());
+        }
+        for (ContactPerson person : persons)
+        {
+            personCities.add(person.getCity());
+        }
+        for (ContactPerson person : persons)
+        {
+            personStates.add(person.getState());
+        }
+        System.out.println("persons name : \t ");
+        System.out.println(personName);
+
+        System.out.print("Cities of a persons : \t ");
+        System.out.println(personCities);
+
+        System.out.print("States of a persons: \t ");
+        System.out.println(personStates);
+
+    }
+
 }
 
