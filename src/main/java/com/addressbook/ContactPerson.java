@@ -1,5 +1,7 @@
 package com.addressbook;
 
+import java.util.Comparator;
+
 public class ContactPerson {
        public String firstName;
        public String lastName;
@@ -74,6 +76,11 @@ public class ContactPerson {
        {
         this.phoneNumber = phoneNumber;
        }
+       public static Comparator<ContactPerson> firstNamesorting = (contact1,contact2) -> {
+           String firstName1 = contact1.getFirstName();
+           String firstName2 = contact2.getFirstName();
+           return firstName1.compareToIgnoreCase(firstName2);
+       };
        public String toString()
        {
            return "Name:" + firstName + "" + lastName + "\t Address: " + address + "\t cityname: " + city + "\t statename: " + state + "\t pin code: " + zip + "\t phonenumber: " +phoneNumber+"\n";

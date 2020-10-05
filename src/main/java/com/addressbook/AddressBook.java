@@ -15,12 +15,13 @@ public class AddressBook {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("Welcome to AddressBook");
-        while (choice < 5) {
+        while (choice < 6) {
             System.out.println("1.Add Person ");
             System.out.println("2.Print persons details");
             System.out.println("3.Edit the person details");
             System.out.println("4.Delete the person ");
-            System.out.println("5.Exit");
+            System.out.println("5.Sort By FirstName ");
+            System.out.println("6.Exit");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -34,6 +35,9 @@ public class AddressBook {
                     break;
                 case 4:
                     contact.deletePerson();
+                    break;
+                case 5:
+                    contact.sortByName();
                     break;
             }
         }
@@ -158,6 +162,11 @@ public class AddressBook {
             }
         }
         return flag == 1;
+    }
+    public void sortByName()
+    {
+        persons.sort(ContactPerson.firstNamesorting);
+        persons.forEach(System.out::println);
     }
 }
 
