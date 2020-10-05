@@ -81,6 +81,11 @@ public class ContactPerson {
            String firstName2 = contact2.getFirstName();
            return firstName1.compareToIgnoreCase(firstName2);
        };
+       public static Comparator<ContactPerson> stateSorting = (contact1, contact2) -> {
+           String stateName1 = contact1.getState();
+           String stateName2 = contact2.getState();
+           return stateName1.compareToIgnoreCase(stateName2);
+       };
        public String toString()
        {
            return "Name:" + firstName + "" + lastName + "\t Address: " + address + "\t cityname: " + city + "\t statename: " + state + "\t pin code: " + zip + "\t phonenumber: " +phoneNumber+"\n";
