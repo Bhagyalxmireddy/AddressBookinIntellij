@@ -178,25 +178,25 @@ public class AddressBook {
         persons.forEach(System.out::println);
     }
 
-    public void viewByCityState() {
-        for (ContactPerson person : persons) {
-            personName.add(person.getFirstName());
-        }
-        for (ContactPerson person : persons) {
-            personCities.add(person.getCity());
-        }
-        for (ContactPerson person : persons) {
-            personStates.add(person.getState());
-        }
-        System.out.println("persons name : \t ");
-        System.out.println(personName);
 
-        System.out.print("Cities of a persons : \t ");
-        System.out.println(personCities);
 
-        System.out.print("States of a persons: \t ");
-        System.out.println(personStates);
 
+    public void viewByCityState()
+    {
+        String city;
+        String state;
+        System.out.println("Enter statename :");
+        String stateName = scan.next();
+        System.out.println("Enter cityname :");
+        String cityName = scan.next();
+        for( int count =0; count < persons.size(); count++)
+        {
+            if(persons.get(count).getState().equals(stateName) && persons.get(count).getCity().equals(cityName))
+            {
+                System.out.println(count + "." + persons.get(count).toString());
+            }
+
+        }
 
     }
     public void searchPerson()
